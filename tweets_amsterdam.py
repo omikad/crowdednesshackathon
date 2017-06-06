@@ -16,11 +16,12 @@ class MyTwitterListener(StreamListener):
         if coordinates is not None:
             point = coordinates.get('coordinates')
             if point is not None:
+                id_str = js.get('id_str')
                 created_at = js.get('created_at')
                 lat = point[1]
                 lng = point[0]
                 text = js.get('text').encode('UTF-8')
-                row = [created_at, 'twitter', lat, lng, text]
+                row = [created_at, id_str, 'twitter', lat, lng, text]
                 csv_writer.writerow(row)
                 print(row)
         return True
